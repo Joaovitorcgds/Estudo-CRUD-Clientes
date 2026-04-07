@@ -1,10 +1,17 @@
 package br.com.controller;
 import br.com.model.Cliente;
+import br.com.controller.ClienteRepository;
 
 import java.util.ArrayList;
 
 public class ClienteController {
-    public static ArrayList<Cliente> clientes = new ArrayList<>();
+
+    public ArrayList<Cliente> clientes = new ArrayList<>();
+
+    public ArrayList<Cliente> updateClientes (ArrayList<Cliente> clientes){
+        this.clientes = clientes;
+        return clientes;
+    }
 
     public Cliente cadastrarCliente(String cpf, String nome, int idade){
         Cliente novoCliente = new Cliente(cpf, nome, idade);
@@ -24,3 +31,4 @@ public class ClienteController {
 
     public void removerCliente(Cliente cliente) {clientes.remove(cliente);}
 }
+

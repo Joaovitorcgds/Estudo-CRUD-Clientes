@@ -1,14 +1,20 @@
 import br.com.controller.ClienteController;
+import br.com.controller.ClienteRepository;
 import br.com.model.Cliente;
 
 import java.util.Scanner;
-import static br.com.controller.ClienteController.*;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
+
         ClienteController controller = new ClienteController();
+        ClienteRepository repository = new ClienteRepository();
+
+        if (repository.readClienteOnRepository() != null){
+            controller.updateClientes(repository.readClienteOnRepository());
+        }
 
         while (true){
             System.out.println("1 - Cadastrar cliente");
@@ -44,7 +50,7 @@ public class Main {
 
             }
             else if (opcao == 2) {
-                for (Cliente c : clientes){
+                for (Cliente c : controller.clientes){
                     System.out.println("Nome: " + c.getNome());
                     System.out.println("CPF: " + c.getCpf());
                     System.out.println("Idade: " + c.getIdade());
@@ -106,6 +112,8 @@ public class Main {
                 System.out.println("-------------------");
                 System.out.println("Sistema encerrado");
                 System.out.println("-------------------");
+
+                repository.addClienteOnRepository(controller.clientes);
                 break;
 
             }
