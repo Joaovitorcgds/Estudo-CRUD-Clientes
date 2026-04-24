@@ -1,22 +1,19 @@
 package br.com.controller;
 import br.com.model.Cliente;
-import br.com.controller.ClienteRepository;
+import br.com.repository.ClienteRepository;
 
 import java.util.ArrayList;
 
 public class ClienteController {
 
-    public ArrayList<Cliente> clientes = new ArrayList<>();
+    private ArrayList<Cliente> clientes = new ArrayList<>();
+    ClienteRepository repository = new ClienteRepository();
 
-    public ArrayList<Cliente> updateClientes (ArrayList<Cliente> clientes){
-        this.clientes = clientes;
-        return clientes;
-    }
-
-    public Cliente cadastrarCliente(String cpf, String nome, int idade){
+    public Cliente cadastrarCliente(String cpf, String nome, int idade) throws Exception {
         Cliente novoCliente = new Cliente(cpf, nome, idade);
 
         clientes.add(novoCliente);
+        repository.addClienteOnRepository(clientes);
         return novoCliente;
     }
 
@@ -29,6 +26,35 @@ public class ClienteController {
         return null;
     }
 
-    public void removerCliente(Cliente cliente) {clientes.remove(cliente);}
+    public void listarClientes(){
+        for (Cliente c : clientes){
+            System.out.println("Nome: " + c.getNome());
+            System.out.println("CPF: " + c.getCpf());
+            System.out.println("Idade: " + c.getIdade());
+            System.out.println("-------------------");
+        }
+    }
+
+    public void atualizarCliente(String novoNome, Cliente cliente) throws Exception{
+        cliente.setNome(novoNome);
+        repository.addClienteOnRepository(clientes);
+    }
+
+    public void removerCliente(Cliente cliente) throws Exception {
+        clientes.remove(cliente);
+        repository.addClienteOnRepository(clientes);
+    }
+
+    public void atualizaRepository () throws Exception {
+        repository.addClienteOnRepository(clientes);
+    }
+
+    public void atualizaClientesFromRepository () throws Exception {
+        ArrayList<Cliente> clientes = repository.readClienteOnRepository();
+
+        if (clientes != null){
+            this.clientes = clientes;
+        }
+    }
 }
 

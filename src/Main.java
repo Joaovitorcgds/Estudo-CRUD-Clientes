@@ -1,5 +1,4 @@
 import br.com.controller.ClienteController;
-import br.com.controller.ClienteRepository;
 import br.com.model.Cliente;
 
 import java.util.Scanner;
@@ -10,11 +9,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         ClienteController controller = new ClienteController();
-        ClienteRepository repository = new ClienteRepository();
-
-        if (repository.readClienteOnRepository() != null){
-            controller.updateClientes(repository.readClienteOnRepository());
-        }
+        controller.atualizaClientesFromRepository();
 
         while (true){
             System.out.println("1 - Cadastrar cliente");
@@ -50,12 +45,7 @@ public class Main {
 
             }
             else if (opcao == 2) {
-                for (Cliente c : controller.clientes){
-                    System.out.println("Nome: " + c.getNome());
-                    System.out.println("CPF: " + c.getCpf());
-                    System.out.println("Idade: " + c.getIdade());
-                    System.out.println("-------------------");
-                }
+                controller.listarClientes();
             }
             else if (opcao == 3) {
 
@@ -84,7 +74,8 @@ public class Main {
 
                 if(cliente != null) {
                     System.out.println("*** DIGITE O NOVO NOME? ***");
-                    cliente.setNome(scan.nextLine());
+                    String novoNome = scan.nextLine();
+                    controller.atualizarCliente(novoNome, cliente);
                 }else {
                     System.out.println("-------------------");
                     System.out.println("Cliente não encontrado.");
@@ -113,12 +104,10 @@ public class Main {
                 System.out.println("Sistema encerrado");
                 System.out.println("-------------------");
 
-                repository.addClienteOnRepository(controller.clientes);
+                controller.atualizaRepository();
                 break;
-
             }
             else {
-
                 System.out.println("-------------------");
                 System.out.println("Opção digitada invalida.");
                 System.out.println("-------------------");
