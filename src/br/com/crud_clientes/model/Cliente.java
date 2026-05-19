@@ -1,15 +1,17 @@
-package br.com.model;
+package br.com.crud_clientes.model;
 
 public class Cliente {
 
     private String nome;
     private String cpf;
     private int idade;
+    private Endereco endereco;
 
-    public Cliente( String cpf, String nome, int idade){
+    public Cliente( String cpf, String nome, int idade, Endereco endereco){
         this.cpf = cpf;
         this.nome = nome;
         this.idade = idade;
+        this.endereco = endereco;
 
     }
 
@@ -35,5 +37,9 @@ public class Cliente {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
     }
 }

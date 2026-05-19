@@ -1,6 +1,6 @@
-package br.com.controller;
+package br.com.crud_clientes.repository;
 
-import br.com.model.Cliente;
+import br.com.crud_clientes.model.Cliente;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -34,7 +34,6 @@ public class ClienteRepository {
             ArrayList<Cliente> clientesRepository = gson.fromJson(
                     reader,
                     new TypeToken<ArrayList<Cliente>>() {}.getType());
-
             reader.close();
 
             return clientesRepository;

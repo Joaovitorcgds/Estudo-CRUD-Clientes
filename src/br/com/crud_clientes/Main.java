@@ -1,5 +1,8 @@
-import br.com.controller.ClienteController;
-import br.com.model.Cliente;
+package br.com.crud_clientes;
+
+import br.com.crud_clientes.controller.ClienteController;
+import br.com.crud_clientes.model.Cliente;
+import br.com.crud_clientes.model.Endereco;
 
 import java.util.Scanner;
 
@@ -27,6 +30,10 @@ public class Main {
                 String cpfDigitado = scan.nextLine();
                 String nome;
                 int idade;
+                String rua;
+                String cidade;
+                String cep;
+
 
                 if(controller.buscarCliente(cpfDigitado) == null){
 
@@ -35,7 +42,19 @@ public class Main {
 
                     System.out.println("*** QUAL É A SUA IDADE? ***");
                     idade = Integer.parseInt(scan.nextLine());
-                    controller.cadastrarCliente(cpfDigitado, nome, idade);
+
+                    System.out.println("*** QUAL É A SUA RUA? ***");
+                    rua = scan.nextLine();
+
+                    System.out.println("*** QUAL É A SUA CIDADE? ***");
+                    cidade = scan.nextLine();
+
+                    System.out.println("*** QUAL É O SEU CEP? ***");
+                    cep = scan.nextLine();
+
+                    Endereco endereco = new Endereco(rua, cidade, cep);
+
+                    controller.cadastrarCliente(cpfDigitado, nome, idade, endereco);
 
                     System.out.println("Cliente " + nome + " Cadastrado(a).");
                 } else {

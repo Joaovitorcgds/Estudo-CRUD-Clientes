@@ -1,6 +1,8 @@
-package br.com.controller;
-import br.com.model.Cliente;
-import br.com.repository.ClienteRepository;
+package br.com.crud_clientes.controller;
+
+import br.com.crud_clientes.model.Cliente;
+import br.com.crud_clientes.model.Endereco;
+import br.com.crud_clientes.repository.ClienteRepository;
 
 import java.util.ArrayList;
 
@@ -9,8 +11,8 @@ public class ClienteController {
     private ArrayList<Cliente> clientes = new ArrayList<>();
     ClienteRepository repository = new ClienteRepository();
 
-    public Cliente cadastrarCliente(String cpf, String nome, int idade) throws Exception {
-        Cliente novoCliente = new Cliente(cpf, nome, idade);
+    public Cliente cadastrarCliente(String cpf, String nome, int idade, Endereco endereco) throws Exception {
+        Cliente novoCliente = new Cliente(cpf, nome, idade, endereco);
 
         clientes.add(novoCliente);
         repository.addClienteOnRepository(clientes);
