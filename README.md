@@ -99,16 +99,16 @@ if (controller.buscarCliente(cpfDigitado) != null) {
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/crud-clientes-java.git
+git clone https://github.com/Joaovitorcgds/crud-clientes-java.git
 
 # Navigate to project folder
 cd crud-clientes-java
 
 # Compile
-javac -cp .:gson-2.x.jar src/br/com/crud_clientes/Main.java
+javac -cp .:gson-2.13.2.jar src/br/com/crud_clientes/Main.java
 
 # Run
-java -cp .:gson-2.x.jar br.com.crud_clientes.Main
+java -cp .:gson-2.13.2.jar br.com.crud_clientes.Main
 ```
 
 ### Application menu
