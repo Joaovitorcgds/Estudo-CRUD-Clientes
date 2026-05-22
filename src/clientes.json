@@ -13,5 +13,15 @@
     "nome": "li",
     "cpf": "3456",
     "idade": 51
+  },
+  {
+    "nome": "jj",
+    "cpf": "15254564654",
+    "idade": 25,
+    "endereco": {
+      "rua": "maciel",
+      "cidade": "rj",
+      "cep": "232323"
+    }
   }
 ]

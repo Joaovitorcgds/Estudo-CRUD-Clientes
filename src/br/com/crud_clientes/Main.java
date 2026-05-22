@@ -25,16 +25,17 @@ public class Main {
             int opcao =  Integer.parseInt(scan.nextLine());
 
             if (opcao == 1){
-
-                System.out.println("*** QUAL É O SEU CPF? ***");
-                String cpfDigitado = scan.nextLine();
+                String cpfDigitado;
                 String nome;
                 int idade;
                 String rua;
                 String cidade;
                 String cep;
 
+                System.out.println("*** QUAL É O SEU CPF? ***");
+                cpfDigitado = scan.nextLine();
 
+                // Verifica se o CPF já existe antes de cadastrar
                 if(controller.buscarCliente(cpfDigitado) == null){
 
                     System.out.println("*** QUAL É O SEU NOME? ***");
@@ -54,9 +55,12 @@ public class Main {
 
                     Endereco endereco = new Endereco(rua, cidade, cep);
 
-                    controller.cadastrarCliente(cpfDigitado, nome, idade, endereco);
-
-                    System.out.println("Cliente " + nome + " Cadastrado(a).");
+                    try {
+                        controller.cadastrarCliente(cpfDigitado, nome, idade, endereco);
+                        System.out.println("Cliente " + nome + " Cadastrado(a).");
+                    } catch (Exception e){
+                        System.out.println("Error:" + e.getMessage());
+                    }
                 } else {
                     System.out.println("Cliente cadastrado");
                     System.out.println("-------------------");
@@ -64,6 +68,7 @@ public class Main {
 
             }
             else if (opcao == 2) {
+                // LISTA TODOS OS CLIENTES CADASTRADOS.
                 controller.listarClientes();
             }
             else if (opcao == 3) {
@@ -72,8 +77,10 @@ public class Main {
                 System.out.println("Digite o CPF do cliente.");
 
                 String cpf = scan.nextLine();
+                //BUSCA UM CLIENTE A PARTIR DO CPF
                 Cliente res = controller.buscarCliente(cpf);
 
+                //EXIBE CLIENTE SE ENCONTRAR
                 if (res == null){
                     System.out.println("Cliente não encontrado.");
                 }else {
@@ -89,8 +96,10 @@ public class Main {
 
                 System.out.println("*** QUAL É O SEU CPF? ***");
                 String cpfDigitado = scan.nextLine();
+                //BUSCA UM CLIENTE A PARTIR DO CPF
                 Cliente cliente = controller.buscarCliente(cpfDigitado);
 
+                //EDITA O NOME DO CLIENTE SE ENCONTRAR
                 if(cliente != null) {
                     System.out.println("*** DIGITE O NOVO NOME? ***");
                     String novoNome = scan.nextLine();
@@ -108,6 +117,7 @@ public class Main {
                 String cpfDigitado = scan.nextLine();
                 Cliente cliente = controller.buscarCliente(cpfDigitado);
 
+                //APAGA O CLIENTE SE ENCONTRAR
                 if(cliente != null) {
                     controller.removerCliente(cliente);
                     System.out.println("Cliente Removido.");
@@ -119,6 +129,7 @@ public class Main {
 
             }
             else if (opcao == 0) {
+                // ENCERRA O PROGRAMA
                 System.out.println("-------------------");
                 System.out.println("Sistema encerrado");
                 System.out.println("-------------------");
@@ -127,6 +138,7 @@ public class Main {
                 break;
             }
             else {
+                // INFORMA OPÇÃO INVALIDA
                 System.out.println("-------------------");
                 System.out.println("Opção digitada invalida.");
                 System.out.println("-------------------");
